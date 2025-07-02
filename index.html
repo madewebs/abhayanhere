@@ -19,6 +19,27 @@
 
     <!-- Theme Style -->
     <link rel="stylesheet" href="css/style.css">
+     <script>
+        function sendToWhatsApp() {
+            let phone = "918594054122"; // Replace with your WhatsApp number (without the "+" sign)
+
+            let name = document.getElementById('name').value.trim();
+            let email = document.getElementById('email').value.trim();
+            let message = document.getElementById('message').value.trim();
+
+            if (!name || !email || !message) {
+                alert("Please fill in all the fields.");
+                return;
+            }
+
+            var url = "https://wa.me/" + phone + "?text=" +
+                "Name: " + encodeURIComponent(name) + "%0a" +
+                "Email: " + encodeURIComponent(email) + "%0a" +
+                "Message: " + encodeURIComponent(message) + "%0a";
+
+            window.open(url, '_blank').focus();
+        }
+    </script>
 
   </head>
   <body data-spy="scroll" data-target=".site-nav-target" data-offset="200">
@@ -579,10 +600,10 @@
           <div class="row justify-content-between">
             
             <div class="col-md-6">
-              <form method="post" action="send-email.php" class="form-outline-style-v1" id="contactForm">
+              <form class="form-outline-style-v1" id="contactForm" onsubmit="event.preventDefault(); sendToWhatsApp();">
                 <div class="form-group row mb-0">
 
-                  <div class="col-lg-6 form-group gsap-reveal">
+                  <div class="col-lg-6 form-group gsap-reveal" action="#">
                     <label for="name">Name</label>
                     <input name="name" type="text" class="form-control" id="name">
                   </div>
@@ -665,6 +686,7 @@
       <div class="site-loader"></div>
     </div>
 
+<script src="js/whatsapp.js"></script>
     <script src="js/scripts-dist.js"></script>
     <script src="js/main.js"></script>
 
